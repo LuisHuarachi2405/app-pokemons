@@ -12,7 +12,6 @@ const Home = () => {
 
   useEffect(() => {
     getDataAbilities().then(response => {
-      console.log(response);
       setAbilities(response.data)
       setloading(true)
     })
@@ -23,9 +22,11 @@ const Home = () => {
     }
   }, []);
 
-  const ListAbilities = (list: any) => {
-    const items = list.results.map((ability: Result)  => {
-      return <li>{ ability.name }</li>
+  const ListAbilities = (data: any) => {    
+    const { results } = data
+    
+    const items = results.map((ability: Result, index:number)  => {
+      return <li key={index}>{ ability.name }</li>
     })
 
     return (<ul>{ items }</ul>)
@@ -35,7 +36,7 @@ const Home = () => {
     <div>
       {
         loading ? 
-        <ListAbilities list={abilities}/> :
+        <ListAbilities {...abilities}/> :
         <p>loading</p>
       }
     </div>

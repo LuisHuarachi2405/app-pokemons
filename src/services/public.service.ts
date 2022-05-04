@@ -10,5 +10,5 @@ export const getPokemons = (id: number) => {
 }
 
 export const getAbilities = () => {
-  return instanceAxios.get<Ability>('/ability/?limit=20&offset=20')
+  return instanceAxios.get('/ability/?limit=20&offset=20')
 }
